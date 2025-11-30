@@ -1,66 +1,72 @@
 body {
-  font-family: system-ui, Segoe UI, Roboto, Arial;
+  font-family: system-ui, Arial;
   margin: 40px;
   background: #f7f7f8;
-  color: #111;
 }
+
 .card {
   max-width: 420px;
   margin: 0 auto;
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
+
 h1 {
-  font-size: 18px;
   margin: 0 0 12px;
+  font-size: 20px;
 }
+
 .controls {
   display: flex;
   gap: 8px;
 }
+
 input {
   flex: 1;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  font-size: 14px;
 }
+
 button {
   padding: 8px 12px;
+  border: none;
   border-radius: 6px;
-  border: 0;
   background: #0066ff;
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
-button:active {
-  transform: translateY(1px);
-}
+button:active { transform: translateY(1px); }
+
 ul {
   list-style: none;
   padding: 0;
-  margin: 14px 0 0;
+  margin-top: 16px;
 }
+
 li {
   padding: 8px 10px;
-  border: 1px solid #eee;
   border-radius: 6px;
+  border: 1px solid #ececec;
   margin-bottom: 8px;
-  cursor: default;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
 li:hover {
-  background: #fafafa;
+  background: #f3f3f3;
 }
-.hint {
-  font-size: 13px;
-  color: #666;
-  margin-top: 8px;
+
+li span.completed {
+  text-decoration: line-through;
+  color: #777;
 }
+
 .msg {
+  margin-top: 10px;
   height: 18px;
-  margin-top: 8px;
-  color: #046e0d;
-  font-size: 13px;
+  color: #0d7a0d;
+  font-size: 14px;
 }

@@ -6,35 +6,45 @@ const msg = document.getElementById('msg');
 function showMsg(text){
   msg.textContent = text;
   if(!text) return;
-  setTimeout(()=>{ msg.textContent = ''; }, 2200);
+  setTimeout(() => { msg.textContent = ''; }, 2000);
 }
 
 function existingNames(){
-  return Array.from(list.querySelectorAll('li')).map(li=>li.textContent.trim().toLowerCase());
+  return Array.from(list.querySelectorAll('li span'))
+    .map(li => li.textContent.trim().toLowerCase());
 }
 
 function addTask(){
-  const raw = input.value || '';
-  const name = raw.trim();
-  if(!name){ showMsg('Boş vəzifə əlavə etmək olmaz'); return; }
+  const raw = input.value.trim();
+  if(!raw){ showMsg("Boş tapşırıq olmaz"); return; }
 
   const names = existingNames();
-  if(names.includes(name.toLowerCase())){ showMsg('Eyni addan artıq var'); return; }
+  if(names.includes(raw.toLowerCase())){
+    showMsg("Bu task artıq var");
+    return;
+  }
 
   const li = document.createElement('li');
-  li.textContent = name;
+
+  const text = document.createElement('span');
+  text.textContent = raw;
+
+  text.addEventListener('click', ()=>{
+    text.classList.toggle('completed');
+  });
 
   li.addEventListener('dblclick', ()=>{
     li.remove();
-    showMsg('User silindi');
+    showMsg("Task silindi");
   });
 
+  li.appendChild(text);
   list.appendChild(li);
+
   input.value = '';
   input.focus();
-  showMsg('User Əlavə olundu');
+  showMsg("Task əlavə olundu");
 }
 
 addBtn.addEventListener('click', addTask);
-input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ addTask(); } });
-input.focus();
+input.addEventListener('keydown', e => { if(e.key === 'Enter') addTask(); });
